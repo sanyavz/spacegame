@@ -32,12 +32,17 @@ function startGame() {
 
 document.getElementById('start-btn').onclick = startGame;
 
-// управление пальцем
 canvas.addEventListener('touchmove', (e) => {
   const touch = e.touches[0];
+  
+  // горизонтальное управление (центрируем по X)
   ship.x = touch.clientX - ship.w / 2;
-  ship.y = Math.min(canvas.height - 150, touch.clientY - ship.h / 2);
+
+  // вертикальное управление — добавляем отступ вверх
+  const offsetY = 80; // расстояние между пальцем и кораблём
+  ship.y = Math.min(canvas.height - 150, touch.clientY - ship.h / 2 - offsetY);
 });
+
 
 function loop(timestamp) {
   if (!gameRunning) return;
@@ -55,7 +60,7 @@ function loop(timestamp) {
   }
 
   bullets.forEach(b => {
-    b.y -= 4;
+    b.y -= 6;
     ctx.drawImage(bulletImg, b.x, b.y, b.w, b.h);
   });
   bullets = bullets.filter(b => b.y > -20);
@@ -67,7 +72,7 @@ function loop(timestamp) {
   }
 
   items.forEach(i => {
-    i.y += 2;
+    i.y += 3;
     ctx.drawImage(i.img, i.x, i.y, i.w, i.h);
   });
   items = items.filter(i => i.y < canvas.height + 60);
