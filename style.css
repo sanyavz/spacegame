@@ -40,10 +40,10 @@ body, html {
 }
 
 #controls button {
-  font-size: 32px;
-  padding: 20px 40px;
+  font-size: 160px;        /* 32 * 5 */
+  padding: 100px 200px;    /* 20*5 и 40*5 */
   border: none;
-  border-radius: 12px;
+  border-radius: 60px;     /* 12*5 */
   background: #0af;
   color: white;
   opacity: 0.7;

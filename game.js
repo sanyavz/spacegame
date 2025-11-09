@@ -18,7 +18,7 @@ for (let i = 1; i <= 6; i++) {
 }
 
 // Переменные корабля и игры
-let ship = { x: canvas.width/2, y: canvas.height - 300, w: 200, h: 200 };
+let ship = { x: canvas.width/2, y: canvas.height - 1000, w: 200, h: 200 };
 let bullets = [];
 let items = [];
 let score = 0;
