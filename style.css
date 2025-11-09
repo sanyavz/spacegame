@@ -40,14 +40,19 @@ body, html {
 }
 
 #controls button {
-  font-size: 160px;        /* 32 * 5 */
-  padding: 100px 200px;    /* 20*5 и 40*5 */
+  font-size: 160px;
+  padding: 100px 200px;
   border: none;
-  border-radius: 60px;     /* 12*5 */
+  border-radius: 60px;
   background: #0af;
   color: white;
   opacity: 0.7;
-}
-#controls button:active {
-  opacity: 1;
+
+  /* ⚡ новые свойства */
+  user-select: none;       /* запрет выделения текста */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  outline: none;           /* убирает обводку при тапе */
+  -webkit-tap-highlight-color: transparent; /* убирает подсветку в мобильных браузерах */
 }

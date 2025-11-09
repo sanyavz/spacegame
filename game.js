@@ -52,7 +52,7 @@ document.addEventListener('keyup', (e) => { keys[e.key] = false; });
 
 // Движение корабля
 function moveShip() {
-  const speed = 7;
+  const speed = 14;
   if (keys['ArrowLeft'] || keys['a'] || movingLeft) ship.x -= speed;
   if (keys['ArrowRight'] || keys['d'] || movingRight) ship.x += speed;
 
