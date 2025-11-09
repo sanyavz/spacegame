@@ -30,3 +30,24 @@ body, html {
   color: white;
   cursor: pointer;
 }
+#controls {
+  position: fixed;
+  bottom: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  pointer-events: auto; /* чтобы кнопки можно было нажимать */
+}
+
+#controls button {
+  font-size: 32px;
+  padding: 20px 40px;
+  border: none;
+  border-radius: 12px;
+  background: #0af;
+  color: white;
+  opacity: 0.7;
+}
+#controls button:active {
+  opacity: 1;
+}

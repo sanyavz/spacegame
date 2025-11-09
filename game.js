@@ -1,3 +1,10 @@
+let movingLeft = false;
+let movingRight = false;
+document.getElementById('left-btn').addEventListener('touchstart', () => { movingLeft = true; });
+document.getElementById('left-btn').addEventListener('touchend', () => { movingLeft = false; });
+
+document.getElementById('right-btn').addEventListener('touchstart', () => { movingRight = true; });
+document.getElementById('right-btn').addEventListener('touchend', () => { movingRight = false; });
 const canvas = document.getElementById('game');
 const ctx = canvas.getContext('2d');
 canvas.width = innerWidth;
@@ -32,20 +39,38 @@ function startGame() {
 
 document.getElementById('start-btn').onclick = startGame;
 
-canvas.addEventListener('touchmove', (e) => {
-  const touch = e.touches[0];
-  
-  // горизонтальное управление (центрируем по X)
-  ship.x = touch.clientX - ship.w / 2;
+let keys = {}; // объект для отслеживания нажатий
 
-  // вертикальное управление — добавляем отступ вверх
-  const offsetY = 80; // расстояние между пальцем и кораблём
-  ship.y = Math.min(canvas.height - 150, touch.clientY - ship.h / 2 - offsetY);
+document.addEventListener('keydown', (e) => {
+  keys[e.key] = true;
 });
+
+document.addEventListener('keyup', (e) => {
+  keys[e.key] = false;
+});
+
+function moveShip() {
+  const speed = 7; // скорость движения корабля
+  if (keys['ArrowLeft'] || keys['a']) ship.x -= speed;
+  if (keys['ArrowRight'] || keys['d']) ship.x += speed;
+  if (keys['ArrowUp'] || keys['w']) ship.y -= speed;
+  if (keys['ArrowDown'] || keys['s']) ship.y += speed;
+
+  // ограничиваем корабль экраном
+  ship.x = Math.max(0, Math.min(canvas.width - ship.w, ship.x));
+  ship.y = Math.max(0, Math.min(canvas.height - ship.h, ship.y));
+}
+
 
 
 function loop(timestamp) {
   if (!gameRunning) return;
+const speed = 7; // скорость движения
+if (movingLeft) ship.x -= speed;
+if (movingRight) ship.x += speed;
+
+// ограничиваем экран
+ship.x = Math.max(0, Math.min(canvas.width - ship.w, ship.x));
 
   // === Заливаем весь экран белым цветом ===
   ctx.fillStyle = "white";
@@ -67,7 +92,7 @@ function loop(timestamp) {
 
   if (timestamp - lastSpawn > 1000) {
     const img = itemImgs[Math.floor(Math.random() * itemImgs.length)];
-    items.push({ x: Math.random() * (canvas.width - 50), y: -60, w: 50, h: 50, img });
+    items.push({ x: Math.random() * (canvas.width - 110), y: -110, w: 110, h: 110, img });
     lastSpawn = timestamp;
   }
 
