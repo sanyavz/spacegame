@@ -1,0 +1,32 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: black;
+  touch-action: none;
+}
+
+#game {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+
+#start-screen {
+  position: fixed;
+  inset: 0;
+  background: url('assets/background.jpg') center/cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#start-btn {
+  font-size: 24px;
+  padding: 20px 40px;
+  border: none;
+  border-radius: 12px;
+  background: #0af;
+  color: white;
+  cursor: pointer;
+}
